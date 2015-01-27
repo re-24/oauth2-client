@@ -10,8 +10,6 @@ class Github extends AbstractProvider
 
     public $domain = 'https://github.com';
 
-    public $apiDomain = 'https://api.github.com';
-
     public function urlAuthorize()
     {
         return $this->domain.'/login/oauth/authorize';
@@ -25,7 +23,7 @@ class Github extends AbstractProvider
     public function urlUserDetails(\League\OAuth2\Client\Token\AccessToken $token)
     {
         if ($this->domain === 'https://github.com') {
-            return $this->apiDomain.'/user?access_token='.$token;
+            return $this->domain.'/user?access_token='.$token;
         }
         return $this->domain.'/api/v3/user?access_token='.$token;
     }
@@ -33,7 +31,7 @@ class Github extends AbstractProvider
     public function urlUserEmails(\League\OAuth2\Client\Token\AccessToken $token)
     {
         if ($this->domain === 'https://github.com') {
-            return $this->apiDomain.'/user/emails?access_token='.$token;
+            return $this->domain.'/user/emails?access_token='.$token;
         }
         return $this->domain.'/api/v3/user/emails?access_token='.$token;
     }
